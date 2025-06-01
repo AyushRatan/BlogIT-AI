@@ -25,14 +25,14 @@ async def get_posts( db:Session = Depends(get_db),current_user:int = Depends(get
     # func.to_tsvector('english', models.Post.title + ' ' + models.Post.content).op("@@")(func.websearch_to_tsquery("english",search))
     # )
     # all_posts = db.query(models.Post).filter(models.Post.title.ilike(f"%{search}%")).limit(limit).offset(skip).all()
-    all_posts = db.query(models.Post,func.count(models.Vote.post_id).label("vote_count")).join(models.Vote, models.Post.id==models.Vote.post_id,isouter=True).group_by(models.Post.id).all()
+    all_posts = db.query(models.Post,func.count(models.Vote.post_id).label("vote_count")).join(models.Vote, models.Post.id==models.Vote.post_id,isouter=True).group_by(models.Post.id).filter(models.Post.title.ilike(f"%{search}%")).limit(limit).offset(skip).all()
 
 
     # print("*"*10)
     # print(all_posts)
     # print("*"*10)
 
-    return all_posts
+    return [{"post":post,"votes":vote} for post,vote in all_posts]
 
 
 @router.get("/{id}",response_model=PostResponse)

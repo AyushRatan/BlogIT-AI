@@ -14,8 +14,6 @@ class Post(Base):
     owner_id = Column(Integer,ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     owner = relationship("User")
 
-    phone_number = Column(String,nullable=False)
-
 
 
 class User(Base):

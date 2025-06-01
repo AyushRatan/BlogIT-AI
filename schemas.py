@@ -42,8 +42,9 @@ class PostResponse(BaseModel):
         from_attributes=True
 
 
-class PostResponseWithVotes(PostResponse):
-    vote_count:int
+class PostResponseWithVotes(BaseModel):
+    post:PostResponse
+    votes:int
 
     class config:
         from_attributes=True
