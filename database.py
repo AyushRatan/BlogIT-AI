@@ -5,7 +5,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from config import settings
 
-connection_string = f"postgresql://{settings.database_username}:{settings.database_password}@{settings.host}/{settings.database}"
+connection_string = settings.connection_string
 
 engine = create_engine(connection_string,echo=True)
 SessionLocal = sessionmaker(autoflush=False,bind=engine)
