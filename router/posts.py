@@ -1,7 +1,7 @@
 from fastapi import APIRouter,status,HTTPException,Depends
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, text
 from typing import Optional
 import models
 from schemas import PostResponse, PostCreate, PostUpdate, PostResponseWithVotes

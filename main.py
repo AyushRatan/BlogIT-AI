@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from database import engine,get_db
 from router import posts,users,auth,votes
 import models
+from fastapi.middleware.cors import CORSMiddleware
 
 
 logger = logging.getLogger(__name__)
@@ -14,6 +15,19 @@ models.Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI()
+
+
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+
 
 app.include_router(posts.router)
 app.include_router(users.router)

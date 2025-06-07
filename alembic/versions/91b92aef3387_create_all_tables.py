@@ -1,8 +1,8 @@
-"""generate migrations for all tables
+"""create all tables
 
-Revision ID: df77dc9f1fd4
-Revises: ad86e40a5d93
-Create Date: 2025-06-02 00:12:37.959231
+Revision ID: 91b92aef3387
+Revises: 
+Create Date: 2025-06-07 12:44:34.321267
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'df77dc9f1fd4'
-down_revision: Union[str, None] = 'ad86e40a5d93'
+revision: str = '91b92aef3387'
+down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -36,7 +36,6 @@ def upgrade() -> None:
     sa.Column('published', sa.Boolean(), server_default='true', nullable=False),
     sa.Column('created_at', sa.TIMESTAMP(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
-    sa.Column('phone_number', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
