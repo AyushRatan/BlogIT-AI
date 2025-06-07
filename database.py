@@ -7,7 +7,7 @@ from config import settings
 
 connection_string = settings.connection_string
 
-engine = create_engine(connection_string,echo=True)
+engine = create_engine(connection_string,echo=False)
 SessionLocal = sessionmaker(autoflush=False,bind=engine)
 
 
