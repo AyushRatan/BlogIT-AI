@@ -5,7 +5,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from config import settings
 
-connection_string = settings.connection_string
+connection_string = settings.local_connection_string
 
 engine = create_engine(connection_string,echo=False)
 SessionLocal = sessionmaker(autoflush=False,bind=engine)
